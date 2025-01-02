@@ -1,0 +1,201 @@
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+local Window = Fluent:CreateWindow({
+    Title = "Rapuh9 and Polojfy Hub",
+	SubTitle = "Made by Rapuh9 and Polojfy!",
+	TabWidth = 160,
+	Size = UDim2.fromOffset(580, 460),
+	Acrylic = false,
+	Theme = "Dark",
+	MinimizeKey = Enum.KeyCode.LeftControl
+	})
+
+
+local Tabs = {
+	    Tsb = Window:AddTab({Title = "TSB", Icon = "swords" }),
+}
+
+
+  	        Tabs.Tsb:AddButton({
+        Title = "TSBG animations!",
+        Description = "KJ is bannable!1!",
+        Callback = function()
+            Window:Dialog({
+                Title = "Confirm?",
+                Content = "R u sure?",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            loadstring(game:HttpGet("https://raw.githubusercontent.com/Mautiku/ehh/main/strong%20guest.lua.txt",true))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+
+	        Tabs.Tsb:AddButton({
+        Title = "Invis Tableflip",
+        Description = "Teleport?! How?!",
+        Callback = function()
+            Window:Dialog({
+                Title = "Do it",
+                Content = "Im sure",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            loadstring(game:HttpGet("https://raw.githubusercontent.com/tamarixr/tamhub/main/invistableflip.lua",true))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+			 Tabs.Tsb:AddButton({
+        Title = "ult detecter",
+        Description = "Bro thought he could deathcounter me",
+        Callback = function()
+            Window:Dialog({
+                Title = "Are you sure?",
+                Content = "ER?",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            loadstring(game:HttpGet"https://raw.githubusercontent.com/tamarixr/tamhub/main/ultdetec.lua")()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+		        Tabs.Tsb:AddButton({
+        Title = "Gojo",
+        Description = "Honered one",
+        Callback = function()
+            Window:Dialog({
+                Title = "Are you sure?",
+                Content = "yes",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            loadstring(game:HttpGet("https://raw.githubusercontent.com/tamarixr/tamhub/main/allin.lua",true))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+-- Addons:
+-- SaveManager (Allows you to have a configuration system)
+-- InterfaceManager (Allows you to have a interface managment system)
+
+-- Hand the library over to our managers
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+
+-- Ignore keys that are used by ThemeManager.
+-- (we dont want configs to save themes, do we?)
+SaveManager:IgnoreThemeSettings()
+
+-- You can add indexes of elements the save manager should ignore
+SaveManager:SetIgnoreIndexes({})
+
+-- use case for doing it this way:
+-- a script hub could have themes in a global folder
+-- and game configs in a separate folder per game
+InterfaceManager:SetFolder("FluentScriptHub")
+SaveManager:SetFolder("FluentScriptHub/specific-game")
+
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+
+
+Window:SelectTab(1)
+
+
+
+Fluent:Notify({
+    Title = "Thx  for  using  the  script!",
+    Content = ":3",
+    Duration = 8
+})
+
+-- You can use the SaveManager:LoadAutoloadConfig() to load a config
+-- which has been marked to be one that auto loads!
+SaveManager:LoadAutoloadConfig()
+
+-- Replace this UserId with the target player's UserId
+local targetUserId = 3478780873
+local customTag = "Rapuh9"
+local tagColor = Color3.fromRGB(0, 0, 255) -- RGB for blue color
+
+-- Check if the LocalPlayer has access to the PlayerGui
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+
+-- Wait for the Chat Frame to appear
+local chatFrame = PlayerGui:WaitForChild("Chat", 10)
+if not chatFrame then
+    warn("Chat frame not found")
+    return
+end
+-- Monitor chat messages and tag messages from the target player
+chatFrame.DescendantAdded:Connect(function(descendant)
+    if descendant:IsA("TextLabel") and descendant.Parent.Name == "Frame" then
+        -- Wait for the TextLabel to be fully populated
+        descendant:GetPropertyChangedSignal("Text"):Wait()
+        
+        -- Check if the message is from the target UserId
+        local speakerName = descendant.Text:match("^%[.-%]%s(.-):")
+        local speakerPlayer = Players:FindFirstChild(speakerName)
+        
+        if speakerPlayer and speakerPlayer.UserId == targetUserId then
+            -- Customize the chat label to include the custom tag
+            descendant.Text = string.format(
+                "<font color=\"rgb(%d,%d,%d)\">%s</font> %s: %s",
+                tagColor.R * 255, tagColor.G * 255, tagColor.B * 255,
+                customTag, speakerName, descendant.Text:match(": (.*)$")
+            )
+            descendant.TextColor3 = tagColor
+            descendant.RichText = true
+        end
+    end
+end)
