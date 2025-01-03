@@ -100,6 +100,86 @@ local Tabs = {
     })
 
 
+
+			        Tabs.Tsb:AddButton({
+        Title = "er?!",
+        Description = "What does thus do?",
+        Callback = function()
+            Window:Dialog({
+                Title = "Thus shall't press",
+                Content = "Wize man?",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            getgenv().AutoReport = true
+                            loadstring(game:HttpGet("https://raw.githubusercontent.com/Kenjihin69/Kenjihin69/refs/heads/main/Mahitotsbupdate"))() 
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+
+			        Tabs.Tsb:AddButton({
+        Title = "OMG NOSAKATAN",
+        Description = "TRUE-NOSAKATAN BABY",
+        Callback = function()
+            Window:Dialog({
+                Title = "Are you sure?",
+                Content = "OMFG",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            loadstring(game:HttpGet"https://rawscripts.net/raw/The-Strongest-Battlegrounds-Hero-to-True-Nosakatan-18742")()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+			        Tabs.Tsb:AddButton({
+        Title = "Moveset Hub (Very Op)",
+        Description = "Huh",
+        Callback = function()
+            Window:Dialog({
+                Title = "Are you sure?",
+                Content = "Yay?",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            loadstring(game:HttpGet"https://voidy.lol/temp1.lua")()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
   	        Tabs.Tsb:AddButton({
         Title = "TSBG animations!",
         Description = "KJ is bannable!1!",
