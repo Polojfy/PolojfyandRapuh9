@@ -205,6 +205,30 @@ local Tabs = {
         end
     })
 
+			 Tabs.Tsb:AddButton({
+        Title = "Garou to KJ",
+        Description = "Used from real tsb animations",
+        Callback = function()
+            Window:Dialog({
+                Title = "Are you sure?",
+                Content = "ER?",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            loadstring(game:HttpGet("https://raw.githubusercontent.com/Polojfy/KJ-Garou/refs/heads/main/KJ"))()
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
+        end
+    })
 
 
 	        Tabs.Tsb:AddButton({
